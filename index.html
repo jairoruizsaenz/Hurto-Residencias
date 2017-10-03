@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sp">
+    <head>
+        <meta charset="utf-8">        
+        <title>Estupefacientes, más que cifras</title>
+
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>        
+    </head>
+
+    <body>        
+        <div class="container">
+            <header>
+            </header>
+
+            <div class="hero-text-box">
+                <h1>Estupefacientes, más que cifras</h1>
+                
+                <!--
+                <p><a href="#">I’m hungry</a></p>
+                <p><a href="#">Show me more</a></p>
+                -->
+            </div>    
+            <br>
+            <p class="main-text">
+                Desde finales de los años 60, Colombia ha tenido una economía subterránea basada en el tráfico de estupefacientes tanto a nivel nacional como internacional, la cual viene creciendo desde entonces; sin embargo, dada la reciente firma del acuerdo de paz con las Fuerzas Armadas Revolucionarias de Colombia - FARC y el constante trabajo de las Fuerzas Armadas de Colombia, se espera que el nivel de producción y distribución de estupefacientes a nivel nacional disminuya. 
+            </p>
+            
+            <p class="main-text">                
+                Según lo anterior, se realizó un análisis mediante visualizaciones de la base de datos
+                <a href="https://www.datos.gov.co/Seguridad-y-Defensa/Incautaci-n-estupefacientes-2016/hede-9b26" target="_blank">Incautación estupefacientes 2016</a> disponible en el portal de <a href="https://www.datos.gov.co/" target="_blank">Datos Abiertos de Colombia</a>
+                 , proporcionada por el Grupo Información de Criminalidad (GICRI) - DIJIN de la Policía Nacional, con el propósito de entender mejor el estado actual de cómo se distribuyen los estupefacientes a nivel nacional.
+            </p>
+
+            <h2>Cifras</h2>
+            <div id="d3_01_grafico" class="grafica"></div>
+
+            <p class="main-text">            
+                Como primera aproximación a los datos, se procedió a visualizar la cantidad de estupefacientes incautados en el 2016 por cada departamento, entre los cuales se debe prestar atención a los siguientes <strong>Nariño, Antioquia y Valle del Cauca, en los cuales se incautaron 58 , 31 y 27 toneladas respectivamente.</strong>
+            </p>
+            
+            <p class="main-text">
+                En mayor detalle se tiene que en Nariño el 98,6% del total de estupefacientes incautados corresponden a Cocaína, en el departamento de Antioquia se presenta una distribución principalmente entre Cocaína con el 60,1% y Marihuana con el 33,9% de las incautaciones, por último, en el departamento del Valle del Cauca de la cantidad de estupefacientes incautados predominaron la Marihuana con el 57,6%, seguido por la Cocaína con un 38,7%.
+            </p>
+            <div id="d3_02_grafico" class="grafica"></div>
+            
+            <p class="main-text">
+                Continuando con el análisis, se procedió a visualizar el número de incautaciones realizadas por departamento, nuevamente destacaron por contar con el mayor número de incautaciones, los departamentos de <strong>Antioquia (40.953) y Valle del Cauca (27.733)</strong>, seguidos por <strong>Cundinamarca (12.263)</strong>. Se debe mencionar que a pesar de contar con la mayor cantidad de estupefacientes incautados (58.1 Toneladas) que el departamento de <strong>Nariño se ubica en la posición 12 a nivel nacional en el número de incautaciones con 1.448.</strong> 
+            </p>
+            
+            <p class="main-text">                
+                Teniendo en cuenta la tendencia predominante de tener una mayor presencia de estupefacientes en los departamentos de Nariño, Antioquia, Valle del Cauca y Cundinamarca, se realizó una visualización tipo Scatter Plot (o diagrama de dispersión) para explorar la relación entre las variables "Número de Incautaciones" y "Cantidad de estupefacientes incautados".
+            </p>
+            <div id="d3_03_grafico" class="grafica"></div>
+            
+            <p class="main-text">            
+                La visualización anterior permite identificar que los departamentos de Nariño, Antioquia, Valle del Cauca y Cundinamarca presentan un comportamiento atípico en comparación con los demás departamentos del país. Estos últimos no deben ser pasados por alto a pesar de contar con cifras mucho menores, ya que pueden ocultar una problemática que los datos analizados no reflejan.
+            
+            <h2>Conclusiones</h2>                
+            <p class="main-text">            
+                Se debe tener presente que los datos analizados corresponden a incautaciones de estupefacientes y no reflejan la intención de uso, ya sea consumo o distribución de los mismos. Sin embargo, se pudo tener un panorama general de la dinámica de los estupefacientes en los departamentos con mayor incidencia en este fenómeno. A continuación, se presentan los principales hallazgos basados en las visualizaciones presentadas.
+            </p>
+            
+            <h3>Principales hallazgos</h3>
+            <ul>
+                <li>
+                    <p>Los departamentos de Nariño, Antioquia y Valle del Cauca, presentaron la mayor incautación de estupefacientes durante el 2016 con 58, 31 y 27 toneladas respectivamente.</p>
+                </li>
+                <li>
+                    <p>En Nariño el 98,6% del total de estupefacientes incautados corresponden a Cocaína, en Antioquia el 60,1% corresponde a Cocaína y el 33,9% a Marihuana, en Valle del Cauca predominaron la Marihuana con el 57,6%, seguido por la Cocaína con un 38,7%.</p>
+                </li>
+                <li>
+                    <p>El departamento de Nariño presenta un valor alto en la cantidad de estupefacientes incautados, del cual predomina una droga fuerte (98.6% Cocaína) y un número de incautaciones bajo, lo cual indica que podría estar siendo usado como una ruta de distribución de estupefacientes.</p>
+                </li>
+                <li>
+                    <p>En contraste con el departamento de Nariño, Antioquia tiene un comportamiento inverso, presenta un valor relativamente mayor en el número de incautaciones frente a la cantidad de estupefacientes incautados, lo cual podría indicar un fenómeno diferente, el microtráfico y un alto consumo por parte de la población.</p>
+                </li>                
+                <li>
+                    <p>En cantidad de estupefacientes incautados predomina a nivel nacional la Cocaína y Marihuana, a excepción de los departamentos de Caquetá, Putumayo y Guaviare, en los que es mayor la Base de Coca.</p>
+                </li>
+                <li>
+                    <p>La diferencia en tendencias de los departamentos puede indicar en esencia dos situaciones, una problemática de estupefacientes centrada en pocos departamentos del país, por tanto se centran los esfuerzo de las fuerzas militares para combatir el problema en dichos departamentos, o también podría indicar la falta de presencia del estado en gran parte del país para combatir esta problemática, ya sea por falta de recursos o falta de acceso al territorio.</p>
+                </li>
+            </ul>
+
+            <script src="resources/js/d3_Variables.js"></script> 
+            <script src="resources/js/d3_StackedBars.js"></script>
+            <script src="resources/js/d3_StackedBars2.js"></script>   
+            <script src="resources/js/d3_ScatterPlot.js"></script>                             
+
+            <footer>
+                <p><br><br><strong>Estupefacientes, más que cifras</strong> es mantenido por <a href="https://github.com/jairoruizsaenz" target="_blank">Jairo Ruiz Saenz</a>  -  Fecha de actualización: 18/09/2017</p>
+                <p>Publicado con <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>                        
+            </footer>
+        </div>
+    </body>
+</html>
