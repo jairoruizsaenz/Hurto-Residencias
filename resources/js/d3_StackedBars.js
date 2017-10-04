@@ -1,6 +1,6 @@
 //Declaración de las variables espaciales del svg
-var width1 = WIDTH,
-    height1 = HEIGHT,
+var width1 = 1140,
+    height1 = 500,
     margin1 = {top: 60, right: 80, bottom: 50, left: 80},
     svg1 = d3.select("#d3_01_grafico")
             .append("svg")
