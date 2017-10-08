@@ -1,28 +1,17 @@
 var width = 1140,
-    height = 140,
+    height = 136,
     cellSize = 17;
 
 var formatPercent = d3.format(".1%");
 
-d3.csv("resources/data/data2.csv", function(error, data) {
-  if (error) throw error;
-
-var Max_Close = d3.max(data, function(d) { return d.Close; });
-var Min_Close = d3.min(data, function(d) { return d.Close; });
-    
 var color = d3.scaleQuantize()
-//.domain([-0.05, 0.05])  
-.domain([0, Max_Close])  
-.range(["#000", "#0d1b23", "#1b3748", "#2a536d", "#386f91", "#468bb6", "#69a2c6", "#8eb9d4", "#b3d0e2", "#d8e7f0", "#fdfefe"]);    
+    .domain([-0.05, 0.05])  
+    .range(["#000", "#0d1b23", "#1b3748", "#2a536d", "#386f91", "#468bb6", "#69a2c6", "#8eb9d4", "#b3d0e2", "#d8e7f0", "#fdfefe"]);    
+    //.range(["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"]);
     
-var Max_Year = new Date(d3.max(data, function(d) { return d.Date; })).getFullYear();
-var Min_Year = new Date(d3.min(data, function(d) { return d.Date; })).getFullYear();
-
 var svg = d3.select("#d3_02_grafico")
   .selectAll("svg")
-  .data(d3.range(Max_Year, Min_Year -1, -1))
-//.data(d3.range(2018, 1990, -1))
-
+  .data(d3.range(2018, 1990, -1))
   .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -56,17 +45,18 @@ svg.append("g")
   .enter().append("path")
     .attr("d", pathMonth);
 
+d3.csv("resources/data/data.csv", function(error, csv) {
+  if (error) throw error;
+
   var data = d3.nest()
       .key(function(d) { return d.Date; })
-      .rollup(function(d) { return (d[0].Close); })
-      //.rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })  
-    .object(data);
+      .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
+    .object(csv);
 
   rect.filter(function(d) { return d in data; })
       .attr("fill", function(d) { return color(data[d]); })
     .append("title")
-      .text(function(d) { return d + ": " + (data[d]); });
-      //.text(function(d) { return d + ": " + formatPercent(data[d]); });
+      .text(function(d) { return d + ": " + formatPercent(data[d]); });
 });
 
 function pathMonth(t0) {
