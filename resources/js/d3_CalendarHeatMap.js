@@ -6,7 +6,8 @@ d3.csv("resources/data/data.csv", function(error, data) {
   if (error) throw error;
 
 var breaks = [20,40,60,80,100];
-var colours = ["#b6c2f1", "#8b9ee9", "#3557d9", "#1b328d", "#0b1437","#000"];
+//var colours = ["#b6c2f1", "#8b9ee9", "#3557d9", "#1b328d", "#0b1437","#000"];
+var colours = ["#f1eef6", "#d0d1e6", "#a6bddb", "#74a9cf", "#2b8cbe","#045a8d"];
 
 var Max_Year = new Date(d3.max(data, function(d) { return d.Date; })).getFullYear();
 var Min_Year = new Date(d3.min(data, function(d) { return d.Date; })).getFullYear();
