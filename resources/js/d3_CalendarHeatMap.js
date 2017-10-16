@@ -1,3 +1,5 @@
+
+////Comentario de David Ayala: Dimensiones del SVG y cada celda.
 var width = 1140,
     height = 160,
     cellSize = 17;
@@ -5,7 +7,10 @@ var width = 1140,
 d3.csv("resources/data/data.csv", function(error, data) {
   if (error) throw error;
 
+////Comentario de David Ayala: Hubiera sido interesante poder tener la oportunidad de ajustar los breaks de los hurtos e identificar máximos y mínimos. 
 var breaks = [20,40,60,80,100];
+
+////Comentario de David Ayala: ¿Esta escala de azules no era más fácil aplicarla con d3.scaleOrdinal()?    
 //var colours = ["#b6c2f1", "#8b9ee9", "#3557d9", "#1b328d", "#0b1437","#000"];
 var colours = ["#f1eef6", "#d0d1e6", "#a6bddb", "#74a9cf", "#2b8cbe","#045a8d"];
 
@@ -50,7 +55,6 @@ key.selectAll("rect")
 var svg = d3.select("#d3_02_grafico")
   .selectAll("svg")
   .data(d3.range(Max_Year, Min_Year, -1))
-  //.data(d3.range(Max_Year, Max_Year - 1, -1))
   .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -87,6 +91,7 @@ var months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov',
     })    
     
 //::: Dibujo del calendar, cuadros, coloreado y mensaje :::::::::::::::::::::::
+ ////Comentario de David Ayala: Creación de los cuadros del día.
 var rect = svg.append("g")
     .attr("fill", "none")
     .attr("stroke", "#ccc")
@@ -99,6 +104,7 @@ var rect = svg.append("g")
     .attr("y", function(d) { return d.getDay() * cellSize; })
     .datum(d3.timeFormat("%Y-%m-%d"));
 
+ ////Comentario de David Ayala: Creación de los bordes del mes.
 svg.append("g")
     .attr("fill", "none")
     .attr("stroke", "#000")
@@ -108,14 +114,14 @@ svg.append("g")
   .enter().append("path")
     .attr("d", pathMonth);
 
+////Comentario de David Ayala: Anidado de los datos por fecha.
   var data = d3.nest()
       .key(function(d) { return d.Date; })
       .rollup(function(d) { return (d[0].Close); })
-      //.rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })  
     .object(data);
 
-  rect.filter(function(d) { return d in data; })
-    //.attr("fill", function(d) { return color(data[d]); })
+  ////Comentario de David Ayala: Coloreado de los cuadrados.
+    rect.filter(function(d) { return d in data; })
     .attr("fill", function(d) {
                 if (data[d]<=breaks[0]) {
                     return colours[0];
@@ -129,10 +135,9 @@ svg.append("g")
                     return colours[colours.length-1]   
                 }
             })
-    
+    ////Comentario de David Ayala: Creación de tooltip con fecha y número de hurtos.
     .append("title")
       .text(function(d) { return d + ": " + (data[d]); });
-      //.text(function(d) { return d + ": " + formatPercent(data[d]); });
 });
 
 //::: Path de división por mes ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -146,3 +151,8 @@ function pathMonth(t0) {
       + "H" + (w1 + 1) * cellSize + "V" + 0
       + "H" + (w0 + 1) * cellSize + "Z";
 }
+
+////Comentario de David Ayala: En general me parece una modificacion muy buena de la implementación de Bostock de este tipo de visualización
+////ya que es mucho más fácil identificar los días de la semana por los textos y la escala de color corresponde al tipo de variable ilustrada
+////revisaría únicamente el asunto de cómo hacer para que los breaks estén dados más por el rango total de los datos de manera más automática
+////también me parece que el texto de los tooltips podría cambiar para ser más claro, con un formato de fecha más cómodo de leer.
